@@ -22,54 +22,92 @@
 void AvoidObstacle()
 {
     mouseMode = MOUSE_MODE_OBSTACLE_AVOIDING;
+    
+    
 
     for (;;) {
         // first move forward
         ControlMouse(MOUSE_ACTION_FORWARD);
 
         // first, check the status of touch bars
-        if (!touchBarFrontLeft && !touchBarFrontRight) {
+     //   if ((!touchBarFrontLeft) && (!touchBarFrontRight)) {
             // neither is touched (i.e., both the values are zero)
 
             // then check the status of IF sensors
             if (!infraredFrontLeft && !infraredFrontRight) {
                 // neither is touched (i.e., both the values are zero)
                 // then, back to the loop
-                break;
+               
+            }
+            else if ( infraredFrontLeft && infraredFrontRight){
+              
+                // both sensors detect; avoid front obstacle
+            ControlMouse(MOUSE_ACTION_STOP);
+            Delay(100);
+            ControlMouse(MOUSE_ACTION_REVERSE);
+            Delay(300);
+            ControlMouse(MOUSE_ACTION_TURNAROUND);
+            Delay(100);
+            
+              //if((infraredFrontLeft && infraredFrontRight))
+	            //{
+                //ControlMouse(MOUSE_ACTION_STOP);
+	              //Delay(100);
+                //ControlMouse(MOUSE_ACTION_TURNLEFT);
+                //Delay(100);  
+	            //}
+	            //else if(infraredFrontLeft)
+	            //{
+	              //ControlMouse(MOUSE_ACTION_STOP);
+	  	          //Delay(100);
+	  	          //ControlMouse(MOUSE_ACTION_TURNRIGHT);
+	  	          //Delay(100);
+	            //}
+	            //else if(infraredFrontRight)
+	            //{
+	              //ControlMouse(MOUSE_ACTION_STOP);
+  		          //Delay(100);
+	  	          //ControlMouse(MOUSE_ACTION_TURNLEFT);
+	  	          //Delay(100);
+		          //} 
+            
+                
             }
             else if (infraredFrontLeft) {
                 // left sensor detects; avoid left obstacle
+              ControlMouse(MOUSE_ACTION_STOP);
+              Delay(10);
+              ControlMouse(MOUSE_ACTION_TURNRIGHT);
+              Delay(100);
 
             }
             else if (infraredFrontRight) {
                 // right sensor detects; avoid right obstacle
+                ControlMouse(MOUSE_ACTION_STOP);
+                Delay(10);
+                ControlMouse(MOUSE_ACTION_TURNLEFT);
+                Delay(100);
 
             }
-            else {
-                // both sensors detect; avoid front obstacle
-                ControlMouse(MOUSE_ACTION_STOP);
-                ControlMouse(MOUSE_ACTION_REVERSE);
-                ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
-            }
-        }
-        else if (touchBarFrontLeft) {
+
+    //  } else if (touchBarFrontLeft) {
             // left bar is touched; avoid left obstacle
-            ControlMouse(MOUSE_ACTION_STOP);
-            ControlMouse(MOUSE_ACTION_REVERSE);
-            ControlMouse(MOUSE_ACTION_TURNRIGHT);
-        }
-        else if (touchBarFrontRight) {
+    //        ControlMouse(MOUSE_ACTION_STOP);
+    //       ControlMouse(MOUSE_ACTION_REVERSE);
+    //       ControlMouse(MOUSE_ACTION_TURNRIGHT);
+    //    }
+    //        else if (touchBarFrontRight) {
             // right bar is touched; avoid right obstacle
-            ControlMouse(MOUSE_ACTION_STOP);
-            ControlMouse(MOUSE_ACTION_REVERSE);
-            ControlMouse(MOUSE_ACTION_TURNLEFT);
-        }
-        else {
+    //        ControlMouse(MOUSE_ACTION_STOP);
+    //        ControlMouse(MOUSE_ACTION_REVERSE);
+    //        ControlMouse(MOUSE_ACTION_TURNLEFT);
+    //    }
+    //        else {
             // both bars are touched; avoid front obstacle
-            ControlMouse(MOUSE_ACTION_STOP);
-            ControlMouse(MOUSE_ACTION_REVERSE);
-            ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
-        }
+    //        ControlMouse(MOUSE_ACTION_STOP);
+    //        ControlMouse(MOUSE_ACTION_REVERSE);
+    //        ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
+    //    }
     } // end of for() loop
 }
 
@@ -83,7 +121,7 @@ void LineFollowing ()
         ControlMouse(MOUSE_ACTION_FORWARD);
 
         // first, check the status of touch bars
-        if (!touchBarFrontLeft && !touchBarFrontRight) {
+       if (!touchBarFrontLeft && !touchBarFrontRight) {
             // neither is touched (i.e., both the values are zero)
 
             // then check the status of IF sensors
@@ -109,22 +147,22 @@ void LineFollowing ()
         }
         else if (touchBarFrontLeft) {
             // left bar is touched; avoid left obstacle
-            ControlMouse(MOUSE_ACTION_STOP);
-            ControlMouse(MOUSE_ACTION_REVERSE);
-            ControlMouse(MOUSE_ACTION_TURNRIGHT);
+           ControlMouse(MOUSE_ACTION_STOP);
+           ControlMouse(MOUSE_ACTION_REVERSE);
+           ControlMouse(MOUSE_ACTION_TURNRIGHT);
+       }
+       else if (touchBarFrontRight) {
+           // right bar is touched; avoid right obstacle
+           ControlMouse(MOUSE_ACTION_STOP);
+           ControlMouse(MOUSE_ACTION_REVERSE);
+           ControlMouse(MOUSE_ACTION_TURNLEFT);
         }
-        else if (touchBarFrontRight) {
-            // right bar is touched; avoid right obstacle
-            ControlMouse(MOUSE_ACTION_STOP);
-            ControlMouse(MOUSE_ACTION_REVERSE);
-            ControlMouse(MOUSE_ACTION_TURNLEFT);
-        }
-        else {
+       else {
             // both bars are touched; avoid front obstacle
-            ControlMouse(MOUSE_ACTION_STOP);
-            ControlMouse(MOUSE_ACTION_REVERSE);
-            ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
-        }
+          ControlMouse(MOUSE_ACTION_STOP);
+          ControlMouse(MOUSE_ACTION_REVERSE);
+          ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
+       }
     } // end of for() loop
 }
 

@@ -265,21 +265,21 @@ void main(void)
 	//----------------------------------------------------------------------------------
 	// Then, set the following to enter a test mode for testing component functions
 	//----------------------------------------------------------------------------------
-	tbfl = 0;
+//	tbfl = 1;
     
-    if ((tbfl == 1) && (tbfr == 1)) {
-        mouseMode = MOUSE_MODE_OBSTACLE_AVOIDING;
-        AvoidObstacle();
-    }
-    else if ((tbrl == 1) && (tbrr == 1)) {
-        mouseMode = MOUSE_MODE_LINE_FOLLOWING;
-        LineFollowing();
-    }
-    else {
-		Test();
+//    if ((tbfl == 1) && (tbfr == 1)) {
+//        mouseMode = MOUSE_MODE_OBSTACLE_AVOIDING;
+//        AvoidObstacle();
+//    }
+//    else if ((tbrl == 1) && (tbrr == 1)) {
+//        mouseMode = MOUSE_MODE_LINE_FOLLOWING;
+//        LineFollowing();
+//    }
+//    else {
+//		Test();
         // Debug();
-    }
-
+//    }
+ AvoidObstacle();
     // now we are ready to go!
     EnableInterrupts;
     for (;;) {

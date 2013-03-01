@@ -88,7 +88,40 @@ void ControlMouse(MouseAction action)
         if (mouseStatus != MOUSE_STATUS_TURNAROUND) {
             mouseStatus = MOUSE_STATUS_TURNAROUND;
         }
-        break;        
+        break; 
+    case MOUSE_ACTION_SLOWFORWARD:
+        if (leftMotor != MOTOR_STATUS_SLOWFORWARD) {
+            ControlMotor(MOTOR_LEFT, MOTOR_ACTION_SLOWFORWARD);
+        }
+        if (rightMotor != MOTOR_STATUS_SLOWFORWARD) {
+            ControlMotor(MOTOR_RIGHT, MOTOR_ACTION_SLOWFORWARD);
+        }
+        if (mouseStatus != MOUSE_STATUS_SLOWFORWARD) {
+            mouseStatus = MOUSE_STATUS_SLOWFORWARD;
+        }
+        break;
+    case MOUSE_ACTION_SLOWTURNLEFT:
+        if (leftMotor != MOTOR_STATUS_SLOWFORWARD) {
+            ControlMotor(MOTOR_LEFT, MOTOR_ACTION_SLOWFORWARD);
+        }
+        if (rightMotor != MOTOR_STATUS_FORWARD) {
+            ControlMotor(MOTOR_RIGHT, MOTOR_ACTION_FORWARD);
+        }
+        if (mouseStatus != MOUSE_STATUS_SLOWTURNLEFT) {
+            mouseStatus = MOUSE_STATUS_SLOWTURNLEFT;
+        }
+        break; 
+    case MOUSE_ACTION_SLOWTURNRIGHT:
+        if (leftMotor != MOTOR_STATUS_FORWARD) {
+            ControlMotor(MOTOR_LEFT, MOTOR_ACTION_FORWARD);
+        }
+        if (rightMotor != MOTOR_STATUS_SLOWFORWARD) {
+            ControlMotor(MOTOR_RIGHT, MOTOR_ACTION_SLOWFORWARD);
+        }
+        if (mouseStatus != MOUSE_STATUS_SLOWTURNRIGHT) {
+            mouseStatus = MOUSE_STATUS_SLOWTURNRIGHT;
+        }
+        break;       
 
     } // end of switch()
 }

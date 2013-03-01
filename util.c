@@ -55,22 +55,82 @@ void Delay(int a)
 // adc/ldr functions
 //--------------------------------------------------------
 
-byte ADC(byte ldr){
+// function to convert analog to digital
+byte ADC(byte channel)
+{
   byte res=0;
-  	  
-	ADC1SC1  = ldr;
-	while( ADC1SC1_COCO	== 0) ;
+  ADC1SC1  = channel;
+	while( ADC1SC1_COCO	== 0)
+  {
+  }
 	res = ADC1RL;
 	return res;
 	}
-  
-  byte wlfl(void){
+// function to compare wlfl to threshold voltage and set the result  
+byte WL1(void)
+{
   byte res,wlfl;  
-  res=ADC(8);	
+  res=ADC(0);	
+  if (res>50)
+  {
+	    wlfl = 1 ;
+	}
+	else 
+	{
+	  wlfl = 0; 
+	}
 	
-	  if (res>50){
-	    wlfl=1 ;
-	  }
-	    else wlfl=0 ;
-	  return wlfl;
-	} 
+	return wlfl;
+}
+
+// function to compare wlil to threshold voltage and set the result
+byte WL2(void)
+{
+  byte res,wlil;  
+  res=ADC(1);	
+  if (res>50)
+  {
+	    wlil = 1 ;
+	}
+	else 
+	{
+	  wlil = 0; 
+	}
+	
+	return wlil;
+}
+
+// function to compare wlir to threshold voltage and set the result
+byte WL3(void)
+{
+  byte res,wlir;  
+  res=ADC(2);	
+  if (res>50)
+  {
+	    wlir = 1;
+	}
+	else 
+	{
+	  wlir = 0; 
+	}
+	
+	return wlir;
+}
+
+// function to compare wlfr to threshold voltage and set the result
+byte WL4(void)
+{
+  byte res,wlfr;  
+  res=ADC(3);	
+  if (res>50)
+  {
+	    wlfr = 1 ;
+	}
+	else 
+	{
+	  wlfr = 0; 
+	}
+	
+	return wlfr;
+} 
+	

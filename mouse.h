@@ -46,19 +46,25 @@ typedef enum {
 
 typedef enum {
     MOUSE_STATUS_FORWARD,
+    MOUSE_STATUS_SLOWFORWARD,
     MOUSE_STATUS_REVERSE,
     MOUSE_STATUS_STOP,
     MOUSE_STATUS_TURNLEFT,
+    MOUSE_STATUS_SLOWTURNLEFT,
     MOUSE_STATUS_TURNRIGHT,
+    MOUSE_STATUS_SLOWTURNRIGHT,
     MOUSE_STATUS_TURNAROUND
 } MouseStatus;
 
 typedef enum {
     MOUSE_ACTION_FORWARD,
+    MOUSE_ACTION_SLOWFORWARD,
     MOUSE_ACTION_REVERSE,
     MOUSE_ACTION_STOP,
     MOUSE_ACTION_TURNLEFT,
-    MOUSE_ACTION_TURNRIGHT,
+    MOUSE_ACTION_SLOWTURNLEFT,
+    MOUSE_ACTION_TURNRIGHT,  
+    MOUSE_ACTION_SLOWTURNRIGHT, 
     MOUSE_ACTION_TURNAROUND
 } MouseAction;
 
@@ -69,12 +75,14 @@ typedef enum {
 
 typedef enum {
     MOTOR_STATUS_FORWARD,
+    MOTOR_STATUS_SLOWFORWARD,
     MOTOR_STATUS_REVERSE,
     MOTOR_STATUS_STOP
 } MotorStatus;
 
 typedef enum {
     MOTOR_ACTION_FORWARD,
+    MOTOR_ACTION_SLOWFORWARD,
     MOTOR_ACTION_REVERSE,
     MOTOR_ACTION_STOP
 } MotorAction;
@@ -102,10 +110,10 @@ typedef enum {
 /// @name Line Following sensors
 /// We assume that PTBD0-3 are connected to line following sensors.
 //@{
-#define lineFollowingFrontLeft  PTBD_PTBD1
-#define lineFollowingFrontRight PTBD_PTBD0
-#define lineFollowingRearLeft   PTBD_PTBD3
-#define lineFollowingRearRight  PTBD_PTBD2
+#define lineFollowingFrontLeft  PTBD_PTBD0
+#define lineFollowingFrontRight PTBD_PTBD3
+#define lineFollowingInnerLeft  PTBD_PTBD1
+#define lineFollowingInnerRight PTBD_PTBD2
 //@}
 
 /// System specific
@@ -186,8 +194,11 @@ byte BitClear(byte Bit_position, byte Var_old);
 void Delay(int);
 
 //ADC Functions
-  byte wlfl(void);
-  byte ADC(byte);
+byte WL1 (void);
+byte WL2 (void); 
+byte WL3 (void);
+byte WL4 (void);
+byte ADC (byte);
 	  
 	    
 	

@@ -41,6 +41,11 @@ void ControlMotor(Motor motor, MotorAction action)
         tpm2 = HIGH_WORD;
         status = MOTOR_STATUS_STOP;
         break;
+    case MOTOR_ACTION_SLOWFORWARD:
+        tpm1 = (word)(pwLeft*TPM1MOD/3);
+        tpm2 = HIGH_WORD;
+        status = MOTOR_STATUS_SLOWFORWARD;
+        break;
     }
 
     if (motor == MOTOR_LEFT) {

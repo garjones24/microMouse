@@ -24,6 +24,7 @@ void AvoidObstacle()
     mouseMode = MOUSE_MODE_OBSTACLE_AVOIDING;
 
     for (;;) {
+      
         // first move forward
         ControlMouse(MOUSE_ACTION_FORWARD);
 
@@ -35,43 +36,64 @@ void AvoidObstacle()
             if (!infraredFrontLeft && !infraredFrontRight) {
                 // neither is touched (i.e., both the values are zero)
                 // then, back to the loop
-                break;
+                
+            }
+           if (infraredFrontLeft && infraredFrontRight) {
+                // both sensors detect; avoid front obstacle
+                ControlMouse(MOUSE_ACTION_STOP);
+                Delay(10);
+                ControlMouse(MOUSE_ACTION_REVERSE);
+                Delay(70);
+  
             }
             else if (infraredFrontLeft) {
                 // left sensor detects; avoid left obstacle
+                ControlMouse(MOUSE_ACTION_STOP);
+                Delay(10);
+                ControlMouse(MOUSE_ACTION_TURNLEFT);
+                Delay(100);
 
             }
             else if (infraredFrontRight) {
                 // right sensor detects; avoid right obstacle
+                ControlMouse(MOUSE_ACTION_STOP);
+                Delay(10);
+                ControlMouse(MOUSE_ACTION_TURNRIGHT);
+                Delay(100);
 
             }
-            else {
-                // both sensors detect; avoid front obstacle
-                ControlMouse(MOUSE_ACTION_STOP);
-                ControlMouse(MOUSE_ACTION_REVERSE);
-                ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
-            }
+
         }
         else if (touchBarFrontLeft) {
             // left bar is touched; avoid left obstacle
             ControlMouse(MOUSE_ACTION_STOP);
+            Delay(10);
             ControlMouse(MOUSE_ACTION_REVERSE);
+            Delay(500);
             ControlMouse(MOUSE_ACTION_TURNRIGHT);
+            Delay(200);
         }
         else if (touchBarFrontRight) {
             // right bar is touched; avoid right obstacle
             ControlMouse(MOUSE_ACTION_STOP);
+            Delay(10);
             ControlMouse(MOUSE_ACTION_REVERSE);
+            Delay(500);
             ControlMouse(MOUSE_ACTION_TURNLEFT);
+            Delay(200);
         }
         else {
             // both bars are touched; avoid front obstacle
             ControlMouse(MOUSE_ACTION_STOP);
+            Delay(10);
             ControlMouse(MOUSE_ACTION_REVERSE);
+            Delay(500);
             ControlMouse(MOUSE_ACTION_TURNAROUND);	// 180 dgree turn
+            Delay(200);
         }
     } // end of for() loop
 }
+
 
 
 void LineFollowing ()

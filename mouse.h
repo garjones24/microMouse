@@ -184,6 +184,13 @@ void SCISendNewLine(void);
 byte BitSet(byte Bit_position, byte Var_old);
 byte BitClear(byte Bit_position, byte Var_old);
 void Delay(int);
+
+//ADC Functions
+  byte wlfl(void);
+  byte ADC(byte);
+	  
+	    
+	
 //@}
 
 

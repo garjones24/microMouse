@@ -50,3 +50,27 @@ void Delay(int a)
         for(c=0;c<100;c++);
     }
 }
+
+//--------------------------------------------------------
+// adc/ldr functions
+//--------------------------------------------------------
+
+byte ADC(byte ldr){
+  byte res=0;
+  	  
+	ADC1SC1  = ldr;
+	while( ADC1SC1_COCO	== 0) ;
+	res = ADC1RL;
+	return res;
+	}
+  
+  byte wlfl(void){
+  byte res,wlfl;  
+  res=ADC(8);	
+	
+	  if (res>50){
+	    wlfl=1 ;
+	  }
+	    else wlfl=0 ;
+	  return wlfl;
+	} 

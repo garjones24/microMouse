@@ -265,7 +265,7 @@ void main(void)
 	//----------------------------------------------------------------------------------
 	// Then, set the following to enter a test mode for testing component functions
 	//----------------------------------------------------------------------------------
-	tbfl = 0;
+/*	tbfl = 0;
     
     if ((tbfl == 1) && (tbfr == 1)) {
         mouseMode = MOUSE_MODE_OBSTACLE_AVOIDING;
@@ -278,7 +278,8 @@ void main(void)
     else {
 		Test();
         // Debug();
-    }
+    } */
+    AvoidObstacle();
 
     // now we are ready to go!
     EnableInterrupts;
